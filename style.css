@@ -1,4 +1,16 @@
 :root {
-    --primary-color: #FE0435;
+    --primary-color: #E91431;
     --secondary-color: #181E27;
+}
+
+.custom-btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: 500;
+    color: #FFF !important;
+}
+
+.custom-btn-primary:hover {
+    background-color: #BE1028;
+    color: #FFF;
 }
