@@ -1,0 +1,126 @@
+﻿@inject SignInManager<ApplicationUser> signInManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SwiftMeal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/custom.css" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <!-- Font Awesome JS -->
+    <script src="https://kit.fontawesome.com/e379a698ba.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Swift Meals</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse ">
+                    <ul class="navbar-nav justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Find Food
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Restaurants</a>
+                                <a class="dropdown-item" asp-controller="Categories" asp-action="Index">Category</a>
+                                <a class="dropdown-item" asp-controller="Products" asp-action="Index">Dishes</a>
+                            </div>
+                        </li>
+
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a id="sidebarCollapse" class="nav-link">
+                                    <i class="fas fa-user-circle"></i>
+                                    <span>JIGAR PATEL</span>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item mr-2">
+                                <a class="btn custom-btn-primary rounded-pill" asp-area="" asp-controller="Account" asp-action="Register">Sign Up</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn custom-btn-primary rounded-pill" asp-area="" asp-controller="Account" asp-action="Login">Sign In</a>
+                            </li>
+                        }
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sidebar  -->
+
+    <nav id="sidebar">
+       
+        <div class="sidebar-header">
+            <h3>@User.Identity.Name</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li>
+                <a href="#">Account Settings</a>
+            </li>
+            <li>
+                <a href="#">Order History</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+            <li class="shadow-sm mt-5">
+                <form method="post" asp-action="logout" asp-controller="Account">
+                    <button type="submit" class="btn-block text-left">LOG OUT</button>                    
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <!-- Dark Overlay element -->
+    <div class="overlay"></div>
+
+    <div id="content">
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - SwiftsMeals - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+
+
+
+</body>
+</html>

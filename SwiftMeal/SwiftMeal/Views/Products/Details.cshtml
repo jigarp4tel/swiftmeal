@@ -1,0 +1,31 @@
+﻿@model SwiftMeal.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+
+    <div class="card" style="width: 20rem;">
+        <img class="card-img-top" src="~/img/@Model.Image" />
+        <div class="card-body">
+            <h5 class="card-title">@Model.ProductName</h5>
+            <p class="card-text">@Model.Description</p>
+        </div>
+        <a href="#" class="text-decoration-none">
+            <div class="card-footer bg-primary text-left">
+                <h6>Add to Cart<span class="float-right">@Model.Price</span></h6>
+            </div>
+        </a>
+    </div>
+
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.ProductID">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>

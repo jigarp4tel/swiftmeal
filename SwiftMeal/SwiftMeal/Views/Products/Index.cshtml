@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SwiftMeal.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="row row-cols-1 row-cols-md-2">
+    @foreach (var item in Model)
+    {
+
+
+        <div class="card mb-3 mr-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold">@item.ProductName</h5>
+                        <p class="card-text">@item.Description</p>
+                        <p class="card-text font-weight-normal">$@item.Price</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="~/img/@item.Image" class="card-img h-100" alt="...">
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
