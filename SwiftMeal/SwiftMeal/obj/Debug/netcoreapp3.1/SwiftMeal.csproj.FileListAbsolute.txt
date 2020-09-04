@@ -2,7 +2,6 @@ D:\Git\swiftmeal\SwiftMeal\SwiftMeal\bin\Debug\netcoreapp3.1\appsettings.Develop
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\bin\Debug\netcoreapp3.1\appsettings.json
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\bin\Debug\netcoreapp3.1\SwiftMeal.exe
-D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\SwiftMeal.csprojAssemblyReference.cache
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\SwiftMeal.AssemblyInfoInputs.cache
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\SwiftMeal.AssemblyInfo.cs
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\SwiftMeal.RazorAssemblyInfo.cache
@@ -183,3 +182,18 @@ D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\SwiftMeal.MvcApplic
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\bin\Debug\netcoreapp3.1\libman.json
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateRole.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ListRoles.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditRole.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditUsersInRole.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Administration\Index.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ListUsers.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditUser.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangePassword.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangePasswordConfirmation.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Account\Settings.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Products\List.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\CheckOut\CheckOut.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingCart\Cart.cshtml.g.cs
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\SwiftMeal.csprojAssemblyReference.cache

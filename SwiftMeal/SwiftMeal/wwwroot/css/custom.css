@@ -111,7 +111,7 @@ body {
 }
 
     #sidebar ul li a:hover {
-        background: rgb(250,250,250);
+        background: rgb(230,230,230);
     }
 
 #sidebar ul li button {
@@ -123,7 +123,7 @@ body {
 }
 
     #sidebar ul li button:hover {
-        background: rgb(250,250,250);
+        background: rgb(230,230,230);
     }
 
 #sidebar a,

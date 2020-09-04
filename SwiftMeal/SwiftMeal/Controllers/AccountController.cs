@@ -21,6 +21,12 @@ namespace SwiftMeal.Controllers
             this.signInManager = signInManager;
         }
 
+        public IActionResult Settings()
+        {
+            return View();
+        }
+
+
         [HttpPost]
         [HttpGet]
         [AllowAnonymous]
@@ -63,6 +69,12 @@ namespace SwiftMeal.Controllers
 
                 if (result.Succeeded)
                 {
+                    //Redirects admin back to user list after creating new user
+                    if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                        return RedirectToAction("ListUsers", "Administration");
+                    }
+
                     await signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("index", "home");
                 }
@@ -93,6 +105,7 @@ namespace SwiftMeal.Controllers
 
                 if (result.Succeeded)
                 {
+                    // Prevent open redirect attack
                     if (!string.IsNullOrEmpty(returnURL) && Url.IsLocalUrl(returnURL))
                     {
                         return Redirect(returnURL);
@@ -115,6 +128,40 @@ namespace SwiftMeal.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("index", "home");
+        }
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    return RedirectToAction("Login");
+                }
+
+                var result = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return View();
+                }
+
+                await signInManager.RefreshSignInAsync(user);
+                return View("ChangePasswordConfirmation");
+            }
+
+            return View(model);
         }
     }
 }

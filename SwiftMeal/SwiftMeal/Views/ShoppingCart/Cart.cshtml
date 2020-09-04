@@ -1,0 +1,69 @@
+﻿@using System.Collections.Generic;
+@model Cart
+@{
+    ViewData["Title"] = "Cart";
+    IEnumerable<ShoppingCartItem> items = null;
+    if (Model.ItemsList != null)
+     {
+    items = Model.ItemsList;
+     }
+
+}
+
+<h1>Cart</h1>
+@if (items == null)
+{
+    <p>Opps!!! something went wrong our team has been notified!</p>
+}
+else if (items.Count() == 0)
+{
+    <p>No products in your cart. Time for some browsing! </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => items.FirstOrDefault().CartItemProduct.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => items.FirstOrDefault().CartItemProduct.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => items.FirstOrDefault().Quantity)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in items)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CartItemProduct.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CartItemProduct.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <!--
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>-->
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    <!-- <div>
+         <a asp-controller="CheckOut" asp-action="CheckOut">Checkout </a>
+     </div>
+     -->
+}
+
+
+

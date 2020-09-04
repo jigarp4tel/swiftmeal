@@ -1,4 +1,9 @@
 ﻿@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+
+@{
+    var user = await userManager.GetUserAsync(User);
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,17 +31,22 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse ">
                     <ul class="navbar-nav justify-content-between">
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="Index">Admin Home</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Find Food
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="#">Restaurants</a>
-                                <a class="dropdown-item" asp-controller="Categories" asp-action="Index">Category</a>
                                 <a class="dropdown-item" asp-controller="Products" asp-action="Index">Dishes</a>
                             </div>
                         </li>
@@ -44,10 +54,13 @@
                         @if (signInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a id="sidebarCollapse" class="nav-link">
+                                <a id="sidebarCollapse" class="nav-link text-dark">
                                     <i class="fas fa-user-circle"></i>
-                                    <span>JIGAR PATEL</span>
+                                    <span>@user.FullName</span>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn custom-btn-primary" asp-area="" asp-controller="ShoppingCart" asp-action="Cart"><i class="fas fa-shopping-cart"></i></a>
                             </li>
                         }
                         else
@@ -69,28 +82,28 @@
     <!-- Sidebar  -->
 
     <nav id="sidebar">
-       
-        <div class="sidebar-header">
-            <h3>@User.Identity.Name</h3>
-        </div>
-
+        @if (signInManager.IsSignedIn(User))
+        {
+            <div class="sidebar-header">
+                <h3>@user.FullName</h3>
+            </div>
+        }
         <ul class="list-unstyled components">
             <li>
-                <a href="#">Account Settings</a>
+                <a asp-action="Settings" asp-controller="Account"><span class="mr-3"><i class="fas fa-cog"></i></span>Account Settings</a>
             </li>
             <li>
-                <a href="#">Order History</a>
+                <a href="#"><span class="mr-3"><i class="fas fa-concierge-bell"></i></span>Order History</a>
             </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
+
             <li class="shadow-sm mt-5">
                 <form method="post" asp-action="logout" asp-controller="Account">
-                    <button type="submit" class="btn-block text-left">LOG OUT</button>                    
+                    <button type="submit" class="btn-block text-left"><span class="mr-3"><i class="fas fa-sign-out-alt"></i></span>LOG OUT</button>
                 </form>
             </li>
         </ul>
     </nav>
+
     <!-- Dark Overlay element -->
     <div class="overlay"></div>
 

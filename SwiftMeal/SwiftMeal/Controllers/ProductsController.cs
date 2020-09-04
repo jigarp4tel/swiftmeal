@@ -12,7 +12,7 @@ using SwiftMeal.Data;
 using SwiftMeal.Models;
 using SwiftMeal.ViewModels;
 
-namespace SwiftMeal
+namespace SwiftMeal.Controllers
 {
     public class ProductsController : Controller
     {
@@ -29,6 +29,14 @@ namespace SwiftMeal
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Index()
+        {
+            var productContext = _context.Product.Include(p => p.Category);
+            return View(await productContext.ToListAsync());
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> List()
         {
             var productContext = _context.Product.Include(p => p.Category);
             return View(await productContext.ToListAsync());
@@ -57,6 +65,7 @@ namespace SwiftMeal
 
         // GET: Products/Create
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryName");
@@ -88,7 +97,7 @@ namespace SwiftMeal
                 _context.Add(product);
                 ViewData["Category"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryName", product.CategoryID);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(List));
 
             }
 
@@ -117,6 +126,7 @@ namespace SwiftMeal
 
         // GET: Products/Edit/5
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -138,6 +148,7 @@ namespace SwiftMeal
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("ProductID,ProductName,Description,Image,Price,CategoryID")] Product product)
         {
             if (id != product.ProductID)
@@ -163,7 +174,7 @@ namespace SwiftMeal
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(List));
             }
             ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryName", product.CategoryID);
             return View(product);
@@ -171,6 +182,7 @@ namespace SwiftMeal
 
         // GET: Products/Delete/5
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -192,12 +204,21 @@ namespace SwiftMeal
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await _context.Product.FindAsync(id);
+
+            //Delete image from root folder
+            var image = Path.Combine(_webHostEnvironment.WebRootPath, "img", product.Image);
+            if (System.IO.File.Exists(image))
+            {
+                System.IO.File.Delete(image);
+            }
+
             _context.Product.Remove(product);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(List));
         }
 
         private bool ProductExists(int id)

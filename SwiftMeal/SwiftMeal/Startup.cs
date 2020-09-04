@@ -4,20 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using SwiftMeal.Data;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.CodeAnalysis.Options;
-using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using SwiftMeal.Models;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
+using SwiftMeal.Services;
 
 namespace SwiftMeal
 {
@@ -34,6 +32,7 @@ namespace SwiftMeal
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpContextAccessor();
 
             services.AddMvc(config =>
             {
@@ -45,13 +44,17 @@ namespace SwiftMeal
                     options.UseSqlServer(Configuration.GetConnectionString("SwiftMealContext")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<SwiftMealContext>();
-
+            
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 10;
                 options.Password.RequiredUniqueChars = 3;
                 options.Password.RequireNonAlphanumeric = false;
             });
+            services.AddTransient<IShoppingCartService, ShoppingCartService>();
+          //  services.AddScoped<IShoppingCartService, ShoppingCartService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IPaymentService, PaymentService>();
 
         }
 
@@ -75,7 +78,7 @@ namespace SwiftMeal
             {
                 FileProvider = new PhysicalFileProvider(
               Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot")),
-               
+
             });
 
             app.UseRouting();

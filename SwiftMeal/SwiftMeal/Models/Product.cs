@@ -19,6 +19,7 @@ namespace SwiftMeal.Models
         [Display(Name = "Image")]
         public string Image { get; set; }
 
+        [DataType(DataType.Currency)]
         public double Price { get; set; }
 
         public int CategoryID { get; set; }
