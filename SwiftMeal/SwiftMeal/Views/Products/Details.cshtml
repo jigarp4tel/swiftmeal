@@ -17,7 +17,7 @@
             <p class="card-text">@Model.Description</p>
         </div>
 
-        <a asp-controller="ShoppingCart" asp-action="AddtoCart" asp-route-productId="@Model.ProductID" class="btn p-0 m-0" style="width: auto">
+        <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-productId="@Model.ProductID" class="btn p-0 m-0" style="width: auto">
             <div class="card-footer bg-primary text-white">
                 <h6>Add to Cart<span class="float-right">$@Model.Price</span></h6>
             </div>

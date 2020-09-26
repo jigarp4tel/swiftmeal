@@ -8,12 +8,12 @@ namespace SwiftMeal.Models
 {
     public class Cart
     {
-       [Required]
-       public int Id { get; set; }
+        public int Id { get; set; }
 
-       [Required]
-       public string UserId { get; set; }
+        [Required]
+        public string UserId { get; set; }
 
-    public IEnumerable<ShoppingCartItem> ItemsList { get; set; }
+        public IEnumerable<CartItem> ItemsList { get; set; }
+
     }
 }

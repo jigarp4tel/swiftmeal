@@ -2,11 +2,11 @@
 @model Cart
 @{
     ViewData["Title"] = "Cart";
-    IEnumerable<ShoppingCartItem> items = null;
+    IEnumerable<CartItem> items = null;
     if (Model.ItemsList != null)
-     {
-    items = Model.ItemsList;
-     }
+    {
+        items = Model.ItemsList;
+    }
 
 }
 
@@ -25,10 +25,10 @@ else
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => items.FirstOrDefault().CartItemProduct.ProductName)
+                    @Html.DisplayNameFor(model => items.FirstOrDefault().Product.ProductName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => items.FirstOrDefault().CartItemProduct.Description)
+                    @Html.DisplayNameFor(model => items.FirstOrDefault().Product.Description)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => items.FirstOrDefault().Quantity)
@@ -40,10 +40,10 @@ else
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CartItemProduct.ProductName)
+                        @Html.DisplayFor(modelItem => item.Product.ProductName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CartItemProduct.Description)
+                        @Html.DisplayFor(modelItem => item.Product.Description)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Quantity)
@@ -64,6 +64,3 @@ else
      </div>
      -->
 }
-
-
-

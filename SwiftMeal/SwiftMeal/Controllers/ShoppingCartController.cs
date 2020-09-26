@@ -12,6 +12,7 @@ namespace SwiftMeal.Controllers
 {
     public class ShoppingCartController : Controller
     {
+
         private readonly SwiftMealContext appDbContext;
         private readonly IShoppingCartService shoppingCartService;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -22,20 +23,24 @@ namespace SwiftMeal.Controllers
             this.shoppingCartService = shoppingCartService;
             _userManager = userManager;
         }
-        public IActionResult Cart()
+
+        public IActionResult Index()
         {
-            // use the current user's ID to get the cart          
-            var cart = shoppingCartService.GetCartByUserId("64d5cdbe-01f8-4b87-a5e2-13da6082290a");
-            return View(cart);
- 
-            // return View("~/Views/Home/index.cshtml");
+            return View();
         }
 
-        public IActionResult AddtoCart(int productId)
+        public IActionResult Cart()
+        {
+            var userId = _userManager.GetUserId(User);
+            var cart = shoppingCartService.GetCartByUserId(userId);
+            Console.WriteLine($"IN CART CONTROLLER: {userId}");
+            return View(cart);
+        }
+
+        public IActionResult AddToCart(int productId)
         {
             shoppingCartService.AddToCart(productId);
             return RedirectToAction("Cart");
-
         }
 
 

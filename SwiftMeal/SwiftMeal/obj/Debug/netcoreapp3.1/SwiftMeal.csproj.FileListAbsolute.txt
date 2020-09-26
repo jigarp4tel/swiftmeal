@@ -194,6 +194,5 @@ D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Account
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangePasswordConfirmation.cshtml.g.cs
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Account\Settings.cshtml.g.cs
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\Products\List.cshtml.g.cs
-D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\CheckOut\CheckOut.cshtml.g.cs
-D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingCart\Cart.cshtml.g.cs
 D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\SwiftMeal.csprojAssemblyReference.cache
+D:\Git\swiftmeal\SwiftMeal\SwiftMeal\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingCart\Cart.cshtml.g.cs

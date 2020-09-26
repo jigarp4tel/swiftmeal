@@ -11,10 +11,8 @@ namespace SwiftMeal.Services
         public Cart GetCartById(int Id);
 
         public Cart GetCartByUserId(string userId);
-
         public Cart UpdateShoppingCartItem(int itemId);
-
-        public ShoppingCartItem AddToCart(int productId);
+        public CartItem AddToCart(int productId);
 
     }
 }

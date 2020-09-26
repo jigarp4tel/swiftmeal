@@ -18,6 +18,8 @@
     <Compile Remove="Migrations\20200814051041_AddingIdentity.Designer.cs" />
     <Compile Remove="Migrations\20200821040711_Extend_IdentityUser.cs" />
     <Compile Remove="Migrations\20200821040711_Extend_IdentityUser.Designer.cs" />
+    <Compile Remove="Migrations\20200826111135_AddedShoppingCart.cs" />
+    <Compile Remove="Migrations\20200826111135_AddedShoppingCart.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -31,6 +31,7 @@ namespace SwiftMeal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
 
@@ -44,18 +45,15 @@ namespace SwiftMeal
                     options.UseSqlServer(Configuration.GetConnectionString("SwiftMealContext")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<SwiftMealContext>();
-            
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 10;
                 options.Password.RequiredUniqueChars = 3;
                 options.Password.RequireNonAlphanumeric = false;
             });
-            services.AddTransient<IShoppingCartService, ShoppingCartService>();
-          //  services.AddScoped<IShoppingCartService, ShoppingCartService>();
-            services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IPaymentService, PaymentService>();
 
+            services.AddScoped<IShoppingCartService, ShoppingCartService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +69,8 @@ namespace SwiftMeal
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
